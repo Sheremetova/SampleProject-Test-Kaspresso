@@ -6,10 +6,16 @@ This repository contains UI tests for the Android application. The tests are imp
 
 ## Project Structure
 
-- `LoginActivityTest`: a test class containing scenarios for the login activity (`LoginActivity`).
-- `ListActivityTest`: a test class with scenarios for the list activity (`ListActivity`).
-- `LoginScreen`: PageObject class for interacting with elements on the Login screen in tests.
-- `ListScreen`: PageObject class for interacting with elements on the List screen in tests.
+app
+|-- src
+|   |-- androidTest
+|       |-- kotlin
+|           |-- com.example.espressotest
+|               |-- `LoginActivityTest`: a test class containing scenarios for the login activity (`LoginActivity`).
+|               |-- `ListActivityTest`: a test class with scenarios for the list activity (`ListActivity`).
+|               |-- screen
+|                   |-- `LoginScreen`: PageObject class for interacting with elements on the Login screen in tests.
+|                   |-- `ListScreen`: PageObject class for interacting with elements on the List screen in tests.
 
 ## Login Activity Test Scenarios
 
