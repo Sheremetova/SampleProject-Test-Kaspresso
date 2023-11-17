@@ -7,77 +7,50 @@ import com.example.espressotest.ui.login.LoginActivity
 import com.kaspersky.kaspresso.testcases.api.testcase.TestCase
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
+import org.junit.runners.Parameterized
 
-class LoginActivityTest : TestCase() {
+@RunWith(Parameterized::class)
+class LoginActivityTest(
+    private val testName: String,
+    private val email: String,
+    private val password: String,
+    private val expectedSuccess: Boolean
+) : TestCase() {
+
+    companion object {
+        @JvmStatic
+        @Parameterized.Parameters
+        fun data(): Collection<Array<Any>> {
+            return listOf(
+                arrayOf("valid credentials", "test@gmail.com", "strong", true),
+                arrayOf("invalid password (less than 6 symbols)", "test@gmail.com", "weak", false),
+                arrayOf("invalid email", "test@gmail", "strong", false)
+            )
+        }
+    }
 
     @get:Rule
     val activityRule = activityScenarioRule<LoginActivity>()
 
     @Test
-    fun loginWithValidCredentials() {
+    fun loginWithDifferentCredentials() {
         run {
-            step("Sign in with valid credentials") {
+            step("Try to sign in with $testName: $email / $password") {
                 LoginScreen {
-                    emailEditText.replaceText("test@gmail.com")
-                    passwordEditText.replaceText("psswrd")
+                    emailEditText.replaceText(email)
+                    passwordEditText.replaceText(password)
                     signInOrRegisterButton.click()
                 }
             }
 
-            step("Check if List Screen is opened") {
-                device.activities.isCurrent(ListActivity::class.java)
-            }
-        }
-    }
-
-    @Test
-    fun loginWithInvalidPassword() {
-        run {
-            step("Enter invalid password") {
-                LoginScreen {
-                    emailEditText.replaceText("test@gmail.com")
-                    passwordEditText.replaceText("4sym")
+            step("Check result for $testName") {
+                if (expectedSuccess) {
+                    device.activities.isCurrent(ListActivity::class.java)
+                } else {
+                    device.activities.isCurrent(LoginActivity::class.java)
                 }
             }
-
-            step("Check if SIGN IN OR REGISTER button is disabled") {
-                LoginScreen.signInOrRegisterButton.isDisabled()
-            }
-
-            step("Try to sign in with invalid password") {
-                LoginScreen.signInOrRegisterButton.click()
-            }
-
-            step("Check if Login Screen is present") {
-                device.activities.isCurrent(LoginActivity::class.java)
-            }
-
-        }
-
-    }
-
-    @Test
-    fun loginWithInvalidEmail() {
-        run {
-            step("Enter invalid password") {
-                LoginScreen {
-                    emailEditText.replaceText("test@gmail")
-                    passwordEditText.replaceText("psswrd")
-                }
-            }
-
-            step("Check if SIGN IN OR REGISTER button is disabled") {
-                LoginScreen.signInOrRegisterButton.isDisabled()
-            }
-
-            step("Try to sign in with invalid email") {
-                LoginScreen.signInOrRegisterButton.click()
-            }
-
-            step("Check if Login Screen is present") {
-                device.activities.isCurrent(LoginActivity::class.java)
-            }
-
         }
     }
 }
