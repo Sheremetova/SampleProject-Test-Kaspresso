@@ -36,7 +36,17 @@ In this test project, I used parameterization to showcase its capabilities, but 
 
 ### 1. Check Users List
 
-This test verifies the correct display of users on the list screen. It checks the total number of users and ensures that the last user's name and image are visible after scrolling.
+This test verifies the correct display of users on the list screen. It checks that:
+
+- The total number of users is fixed at 20.
+- Each user has a name and an image (verified for one element as an example).
+- The last user's name and image are visible after scrolling.
+
+Please note that the choice of these particular checks is based on the belief that:
+- The number of users in the list is fixed.
+- User names and images are not fixed.
+
+In real-life scenarios, these circumstances may depend on the specific functionality type, and in case of any disputes, they should be discussed with the project manager.
 
 ## Running the Tests
 
@@ -46,5 +56,6 @@ This test verifies the correct display of users on the list screen. It checks th
 
 ## Additional Resources
 
+- [Testing toasts](https://avito-tech.github.io/avito-android/test/Toast/)
 - [Espresso Documentation](https://developer.android.com/training/testing/espresso)
 - [Kaspresso GitHub Repository](https://github.com/KasperskyLab/Kaspresso)
