@@ -17,6 +17,10 @@ This repository contains UI tests for the Android application. The tests are imp
 
 This test verifies successful login into the application using valid email and password.
 
+Upon successful login, a toast with a welcome message and the user's name appears.
+However, it's important to note that checking time-sensitive elements like toasts through automated tests is not recommended due to potential instability.
+If there's a strict need for testing toasts, consider the solution described [here](https://avito-tech.github.io/avito-android/test/Toast/).
+
 ### 2. Login with Invalid Password
 
 This test ensures that entering a password with fewer than 6 characters disables the login button, preventing login.
@@ -24,6 +28,12 @@ This test ensures that entering a password with fewer than 6 characters disables
 ### 3. Login with Invalid Email
 
 This test checks that entering an invalid email address disables the login button, preventing login.
+In the tested application, there are two validations for an email:
+- if it is not empty
+- if it matches the standard regular expression for emails.
+
+However, in this automated test I do not check both options.
+This choice is driven by the consideration that the validator should be tested at the unit test level.
 
 ### Using Parameters in Tests
 
