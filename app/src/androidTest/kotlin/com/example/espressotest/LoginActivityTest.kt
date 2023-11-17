@@ -15,7 +15,7 @@ class LoginActivityTest(
     private val testName: String,
     private val email: String,
     private val password: String,
-    private val expectedSuccess: Boolean
+    private val validCredentials: Boolean
 ) : TestCase() {
 
     companion object {
@@ -43,7 +43,7 @@ class LoginActivityTest(
                 }
             }
 
-            if (expectedSuccess) {
+            if (validCredentials) {
                 step("Try to sign in") {
                     LoginScreen.signInOrRegisterButton.click()
                 }
