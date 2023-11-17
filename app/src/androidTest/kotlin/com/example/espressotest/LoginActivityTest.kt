@@ -36,19 +36,24 @@ class LoginActivityTest(
     @Test
     fun loginWithDifferentCredentials() {
         run {
-            step("Try to sign in with $testName: $email / $password") {
+            step("Enter $testName: $email / $password") {
                 LoginScreen {
                     emailEditText.replaceText(email)
                     passwordEditText.replaceText(password)
-                    signInOrRegisterButton.click()
                 }
             }
 
-            step("Check result for $testName") {
-                if (expectedSuccess) {
+            if (expectedSuccess) {
+                step("Try to sign in") {
+                    LoginScreen.signInOrRegisterButton.click()
+                }
+
+                step("Check if List screen appears") {
                     device.activities.isCurrent(ListActivity::class.java)
-                } else {
-                    device.activities.isCurrent(LoginActivity::class.java)
+                }
+            } else {
+                step("Check if SIGN IN OR REGISTER button is disabled") {
+                    LoginScreen.signInOrRegisterButton.isDisabled()
                 }
             }
         }
