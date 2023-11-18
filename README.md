@@ -6,6 +6,7 @@ This repository contains UI tests for the Android application. The tests are imp
 
 ## Project Structure
 
+```
 app
 |-- src
 |   |-- androidTest
@@ -16,6 +17,8 @@ app
 |               |-- screen
 |                   |-- `LoginScreen`: PageObject class for interacting with elements on the Login screen in tests.
 |                   |-- `ListScreen`: PageObject class for interacting with elements on the List screen in tests.
+
+```
 
 ## Login Activity Test Scenarios
 
