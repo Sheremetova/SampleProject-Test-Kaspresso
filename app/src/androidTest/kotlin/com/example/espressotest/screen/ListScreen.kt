@@ -13,13 +13,13 @@ object ListScreen : KScreen<ListScreen>() {
     override val layoutId: Int? = null
     override val viewClass: Class<*>? = null
 
-    val rvUsers = KRecyclerView(
+    val usersRecyclerView = KRecyclerView(
         builder = { withId(R.id.recyclerView) },
         itemTypeBuilder = { itemType(::UserItemElement) }
     )
 
     class UserItemElement(matcher: Matcher<View>) : KRecyclerItem<UserItemElement>(matcher) {
-        val imageView = KImageView(matcher) { withId(R.id.imageview) }
-        val userNameView = KTextView(matcher) { withId(R.id.textView) }
+        val userAvatarImageView = KImageView(matcher) { withId(R.id.imageview) }
+        val userNameTextView = KTextView(matcher) { withId(R.id.textView) }
     }
 }

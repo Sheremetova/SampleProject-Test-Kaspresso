@@ -22,15 +22,15 @@ class ListActivityTest : TestCase() {
         run {
             step("Check number of Users on List Screen") {
                 ListScreen {
-                    Assert.assertEquals(EXPECTED_USERS_COUNT, rvUsers.getSize())
+                    Assert.assertEquals(EXPECTED_USERS_COUNT, usersRecyclerView.getSize())
                 }
             }
 
             step("Check if the last user's name and image are visible after scrolling") {
-                ListScreen.rvUsers {
+                ListScreen.usersRecyclerView {
                     childAt<ListScreen.UserItemElement>(EXPECTED_USERS_COUNT - 1) {
-                        imageView.isVisible()
-                        userNameView.isVisible()
+                        userAvatarImageView.isVisible()
+                        userNameTextView.isVisible()
                     }
                 }
             }
