@@ -2,7 +2,9 @@
 
 ## Overview
 
-This repository contains UI tests for the Android application. The tests are implemented using the Espresso framework for Android and the Kaspresso library to simplify test writing and maintenance.
+This repository contains UI tests for the Android application.
+The tests are implemented using the Kaspresso framework, which serves as a wrapper for Espresso and UI Automator.
+Kaspresso facilitates the use of both libraries and provides built-in support for the Page Object pattern.
 
 ## Project Structure
 
