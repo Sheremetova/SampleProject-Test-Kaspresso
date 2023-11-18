@@ -64,11 +64,32 @@ Please note that the choice of these particular checks is based on the belief th
 
 In real-life scenarios, these circumstances may depend on the specific functionality type, and in case of any disputes, they should be discussed with the project manager.
 
-## Running the Tests
+## Running the Tests via Android Studio
 
-1. Make sure your project is configured to use the Kaspresso and Espresso frameworks.
-2. Open the desired test class (e.g., `LoginActivityTest` or `ListActivityTest`) in your development environment.
-3. Run the tests using the tools provided by your development environment.
+- To run all tests, right-click on the `app > src > androidTest` folder and choose 'Run All tests'.
+- Alternatively, you can run a specific test from the corresponding class (e.g., `LoginActivityTest` or `ListActivityTest`).
+
+## Viewing Logs
+
+- To view Kaspresso logs within Android Studio, navigate to the 'Logcat' tab and filter by `package:mine KASPRESSO`.
+- Alternatively, run the following command in the command line: `adb logcat "KASPRESSO:I *:S"`
+
+## Possible Improvements and Future Development
+
+1. **Screenshot Capture and/or Screen Recording:**
+This can aid in identifying errors in case of test failures.
+
+2. **Custom Logging:**
+While the current test steps provide sufficient information, adding custom logcat messages for more detailed logging can be added.
+This can be achieved using commands like `testLogger.i("your message")`.
+
+3. **Custom Assertion Timeouts:**
+While the default timeout in Kaspresso is 10 seconds, some scenarios might require longer waiting periods.
+Adjusting timeouts can be done in tests where necessary.
+
+4. **Offline Login Scenario:**
+Consider testing the application's behavior when attempting to log in with no internet connection.
+As the tested application does not handle this situation, this scenario has not been implemented in the current tests.
 
 ## Additional Resources
 
